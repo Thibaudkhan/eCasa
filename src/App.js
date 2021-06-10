@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Mood from './Components/MoodComponent'
+import Room from './Components/RoomComponent'
 
 const App = () => {
 
     return(
-        <Mood/>
+        <Room/>
     );
 }
 
