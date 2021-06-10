@@ -1,8 +1,9 @@
 const express = require('express');
-const db = require('../db.js')// calling file with sql method
-const router = express.Router();
+const model = require('../model/MoodModel.js')
+
+const moodRouter = express.Router();
 
 
 
-module.exports = router
+module.exports = moodRouter
 
