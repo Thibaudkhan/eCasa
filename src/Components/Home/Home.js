@@ -1,13 +1,14 @@
 import React from 'react';
 import {Text,Button,View,StyleSheet} from 'react-native';
 import ViewNativeComponent from "react-native/Libraries/Components/View/ViewNativeComponent";
+import Room from '../Room/Room';
 
 
 let  getDrugById =  async () => {
     const descriptionResponses = await fetch('http://10.0.2.2:3000/getDrugById', {
         method: 'GET',
         headers: {
-            Accept: 'application/json',
+            Accept: 'application/json', 
             'Content-Type': 'application/json',
         }
     })
@@ -22,17 +23,19 @@ let  getDrugById =  async () => {
 
 }
 
-const Mood = () => {
+const Home = () => {
 
     return(
-        <View>
-            <Text style={styles.container}> Coucou toi</Text>
-            <Button
-                onPress={getDrugById}
-                title="Learn More"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-            />
+        <View style={styles.container}>
+            <View style={styles.home}>
+                <Text style={styles.title}>Maison</Text>
+
+                <View style={styles.rooms}>
+                <Room text={'Chambre 1'}/>
+                <Room text={'Chambre 2'}/>
+                </View>
+
+            </View>
         </View>
 
     );
@@ -41,11 +44,17 @@ const Mood = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
-        alignItems: 'center',
-        flexDirection: "row",
-        justifyContent: 'center'
+        backgroundColor: '#E8EAED',
     },
-})
+    home: {
+        paddingTop: 80,
+        paddingHorizontal: 20
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    rooms: {}
+});
 
-export  default  Mood;
+export default Home;
