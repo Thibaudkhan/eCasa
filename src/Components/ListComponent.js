@@ -75,31 +75,13 @@ class Room extends Component {
                 navigation={navigation}
                 rooms={rooms}
                 typeOfRoute={"Mood"}
+                idRoom={0}
+                idMood={0}
             />
         )
     }
 }
 
-function ShowDetailsScreen({route}) {
-
-    return (
-        <Details/>
-    )
-}
-function ShowMoodScreen({route}) {
-
-    return (
-        <Mood/>
-    )
-}
-function ShowNewRoomScreen({route}) {
-
-    return (
-        <View>
-            <Text>New Room</Text>
-        </View>
-    )
-}
 
 export {Room as RoomClass}
 

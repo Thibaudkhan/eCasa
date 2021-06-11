@@ -66,6 +66,8 @@ class Mood extends Component {
 
     render() {
 
+        let idRoom = this.props.route.params.idRoom;
+        console.log("idRoom"+ idRoom )
         let rooms = this.state.rooms;
         const {navigation}= this.props;
 
@@ -74,25 +76,14 @@ class Mood extends Component {
                 navigation={navigation}
                 rooms={rooms}
                 typeOfRoute={"Details"}
+                idRoom={idRoom}
+                idMood={2}
             />
         )
     }
 }
 
-function ShowDetailsScreen({route}) {
 
-    return (
-        <Details/>
-    )
-}
-function ShowNewRoomScreen({route}) {
-
-    return (
-        <View>
-            <Text>New Room</Text>
-        </View>
-    )
-}
 
 export {Mood as MoodClass}
 

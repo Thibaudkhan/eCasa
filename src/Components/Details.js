@@ -13,6 +13,34 @@ class Details extends Component {
         ]
     };
 
+    async componentDidMount() {
+        console.log("insert to history")
+        let {idMood,idRoom} = this.props.route.params
+
+        console.log(idMood+"/// "+idRoom)
+        await this.insertToHistory(idRoom.toString(),idMood.toString())
+
+    }
+
+    insertToHistory = async (idRoom,idMood) => {
+        try{
+            await fetch('http://10.0.2.2:3000/updateRoom', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idRoom: idRoom,
+                    idMood: idMood
+                }),
+            });
+        }catch (e){
+            console.warn("Cannot insert to history")
+        }
+
+    }
+
     render () {
         return (
             <View>

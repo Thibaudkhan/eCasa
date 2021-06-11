@@ -13,13 +13,13 @@ import {
 
 
 
-const Item = ({ navigation,typeOfRoute,title,idItem}) => (
+const Item = ({ navigation,typeOfRoute,title,idItem,idRoom,idMood}) => (
     <View style={{
         justifyContent: 'center',
         alignItems: 'center'
     }}>
         <TouchableOpacity
-            onPress={()=> selectRoute({navigation,typeOfRoute})}
+            onPress={()=> selectRoute({navigation,typeOfRoute,idRoom,idItem})}
             style={styles.item}>
             <View style={styles.card}>
                 <View>
@@ -35,10 +35,17 @@ const Item = ({ navigation,typeOfRoute,title,idItem}) => (
 
 );
 
-let selectRoute = ({navigation,typeOfRoute,idItem})=>{
+let selectRoute = ({navigation,typeOfRoute,idRoom,idItem})=>{
+    console.log("item"+ idItem + " route "+ typeOfRoute)
+    if(typeOfRoute == 'Mood'){
+        idRoom = idItem
+    }
+
     navigation.navigate(typeOfRoute,{
-        id: idItem
+        idRoom: idRoom,
+        idMood : idItem
     })
+    idRoom = idItem;
 
 }
 
@@ -55,10 +62,10 @@ let ButtonAdd = ({navigation})=>{
 }
 
 
-export const List = ({navigation,rooms,typeOfRoute})=> {
+export const List = ({navigation,rooms,typeOfRoute,idRoom,idMood})=> {
 
     const renderItem = ({ item }) => (
-        <Item navigation={navigation} typeOfRoute={typeOfRoute} title={item[1].name} idItem={item[0]} />
+        <Item navigation={navigation} typeOfRoute={typeOfRoute} title={item[1].name} idItem={item[0]} idRoom={idRoom} idMood={idMood} />
     );
 
     let  result = [];
