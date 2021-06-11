@@ -7,7 +7,8 @@ class Details extends Component {
     state = {
         hexa:"#FFF",
         lumi: '200',
-        url: 'http://'
+        url: 'http://',
+        moodData : 'id'
     };
 
     async componentDidMount() {
@@ -15,7 +16,52 @@ class Details extends Component {
         let {idMood,idRoom} = this.props.route.params
 
         console.log(this.props.route.params)
+        await this.getMood()
         await this.insertToHistory(idRoom.toString(),idMood.toString())
+
+    }
+
+    getMood = async()=>{
+
+        const roomsResponses = await  fetch(`http://10.0.2.2:3000/getMood?idMood=ha`,{
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then((responseJson) => {
+                return responseJson;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+        /*try {
+            await console.log("state ")
+
+            const moodResponses = await fetch('http://10.0.2.2:3000/getMood', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idMood: this.props.route.params.idMood
+                }),
+            });
+            const mood = await moodResponses
+
+
+            this.setState({moodData:mood})
+
+            console.log(this.state.moodData)
+        }catch(e){
+            console.warn(e)
+        }*/
+
+
 
     }
 
@@ -47,7 +93,7 @@ class Details extends Component {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    idMoon : this.props.route.params.idMood,
+                    idMood : this.props.route.params.idMood,
                     light_color :this.state.hexa,
                     light_power :this.state.lumi,
                     nameMood : this.props.route.params.name ,

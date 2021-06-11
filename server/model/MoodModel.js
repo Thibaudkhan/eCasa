@@ -27,16 +27,20 @@ Mood.insert = (light_power, name, playlist)=>{
     })
 
 }
-Mood.one = (id)=>{
-    dbRefObject.child(id).get().then((snapshot) => {
+Mood.one =  async (id)=>{
+    let roomData = null
+
+    await dbRefObject.child(id).get().then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val());
+            roomData = snapshot.val();
         } else {
-            console.log("No data available");
+            roomData = "No data available";
         }
     }).catch((error) => {
         console.error(error);
     });
+    return roomData
+
 }
 Mood.all = async ()=>{
     let roomData = null
@@ -53,9 +57,9 @@ Mood.all = async ()=>{
     return roomData
 }
 
-Mood.update = async (idMoon,light_color,light_power,nameMood,playlist)=>{
+Mood.update = async (idMood,light_color,light_power,nameMood,playlist)=>{
 
-    const hopperRef = dbRefObject.child(idMoon);
+    const hopperRef = dbRefObject.child(idMood);
     await hopperRef.update({
         'light_color': light_color,
         'light_power': light_power,

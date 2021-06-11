@@ -16,16 +16,22 @@ moodRouter.get('/getAllMoods',async (req,res)=>{
     res.send(allRooms)
 });
 
-moodRouter.get('/getMood',(req,res)=>{
-    model.one(1)
+moodRouter.get('/getMood',jsonParser,async (req,res)=>{
+    console.log("idMoon")
+    await console.log(req.body)
+
+    let {idMood} = req.body
+    let room = await model.one(idMood)
+    console.log(room)
+    res.send(room)
 });
 
 moodRouter.post('/updateMood',jsonParser,async (req,res)=>{
     console.log("req bosy")
     console.log(req.body)
-    let {idMoon,light_color,light_power,nameMood,playlist} = req.body;
-    console.log("idmoon "+idMoon)
-    await  model.update(idMoon,light_color,light_power,nameMood,playlist)
+    let {idMood,light_color,light_power,nameMood,playlist} = req.body;
+    console.log("idmoon "+idMood)
+    await  model.update(idMood,light_color,light_power,nameMood,playlist)
 });
 
 module.exports = moodRouter
