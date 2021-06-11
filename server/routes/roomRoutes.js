@@ -22,5 +22,9 @@ roomRouter.get('/getRoom',(req,res)=>{
     model.one(1)
 });
 
+roomRouter.get('/updateRoom',(req,res)=>{
+    model.update(1,)
+});
+
 module.exports = roomRouter
 

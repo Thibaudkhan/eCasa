@@ -3,8 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import {List} from './List'
-import {Alert, ImageBackground, StyleSheet, Text, View} from "react-native";
-
+import {Alert, ImageBackground, StyleSheet, Text, View,TextInput } from "react-native";
+import Details from './Details';
+import Mood from  './MoodComponent'
 
 class Room extends Component {
 
@@ -73,6 +74,7 @@ class Room extends Component {
             <List
                 navigation={navigation}
                 rooms={rooms}
+                typeOfRoute={"Mood"}
             />
         )
     }
@@ -81,9 +83,13 @@ class Room extends Component {
 function ShowDetailsScreen({route}) {
 
     return (
-        <View>
-            <Text>Inscire le code hexa pour la couleur voulue</Text>
-        </View>
+        <Details/>
+    )
+}
+function ShowMoodScreen({route}) {
+
+    return (
+        <Mood/>
     )
 }
 function ShowNewRoomScreen({route}) {
@@ -97,23 +103,7 @@ function ShowNewRoomScreen({route}) {
 
 export {Room as RoomClass}
 
-export default class RoomStack extends Component {
 
-    render() {
-
-        const Stack = createStackNavigator();
-
-        return (
-            <NavigationContainer independent={true}>
-                <Stack.Navigator >
-                    <Stack.Screen name="Room" component={Room} />
-                    <Stack.Screen name="Details" component={ShowDetailsScreen} />
-                    <Stack.Screen name="CreateRoom" component={ShowNewRoomScreen} />
-                </Stack.Navigator>
-            </NavigationContainer>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
 

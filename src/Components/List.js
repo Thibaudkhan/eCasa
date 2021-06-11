@@ -13,18 +13,18 @@ import {
 
 
 
-const Item = ({ navigation,title}) => (
+const Item = ({ navigation,typeOfRoute,title,idItem}) => (
     <View style={{
         justifyContent: 'center',
         alignItems: 'center'
     }}>
         <TouchableOpacity
-            onPress={()=> moreDetails({navigation})}
+            onPress={()=> selectRoute({navigation,typeOfRoute})}
             style={styles.item}>
             <View style={styles.card}>
                 <View>
                     <Text >{title} </Text>
-                    <Text >Yo</Text>
+                    <Text >{idItem}</Text>
                 </View>
 
             </View>
@@ -35,12 +35,14 @@ const Item = ({ navigation,title}) => (
 
 );
 
-let moreDetails = ({navigation}) => {
-    navigation.navigate('Details')
+let selectRoute = ({navigation,typeOfRoute,idItem})=>{
+    navigation.navigate(typeOfRoute,{
+        id: idItem
+    })
+
 }
-let createRoom = ({navigation}) => {
-    navigation.navigate('CreateRoom')
-}
+
+
 
 let ButtonAdd = ({navigation})=>{
     return (
@@ -53,10 +55,10 @@ let ButtonAdd = ({navigation})=>{
 }
 
 
-export const List = ({navigation,rooms})=> {
+export const List = ({navigation,rooms,typeOfRoute})=> {
 
     const renderItem = ({ item }) => (
-        <Item navigation={navigation} title={item[1].name} />
+        <Item navigation={navigation} typeOfRoute={typeOfRoute} title={item[1].name} idItem={item[0]} />
     );
 
     let  result = [];
@@ -65,7 +67,7 @@ export const List = ({navigation,rooms})=> {
         result.push([i, rooms [i]]);
 
     console.log("result")
-    console.log(result[0][1].name)
+    console.log(result[0])
 
     return (
         <View style={{ flex: 1, paddingTop: 30, backgroundColor: "#dff2ff" }}>

@@ -50,4 +50,12 @@ Room.all = async ()=>{
 
 }
 
+Room.update = async (idRoom,idMood)=>{
+
+    const hopperRef = dbRefObject.child(idRoom);
+    await hopperRef.update({
+        'mood': idMood
+    });
+}
+
 module.exports = Room
