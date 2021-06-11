@@ -19,7 +19,7 @@ const Item = ({ navigation,typeOfRoute,title,idItem,idRoom,idMood}) => (
         alignItems: 'center'
     }}>
         <TouchableOpacity
-            onPress={()=> selectRoute({navigation,typeOfRoute,idRoom,idItem})}
+            onPress={()=> selectRoute({navigation,typeOfRoute,idRoom,idItem,title})}
             style={styles.item}>
             <View style={styles.card}>
                 <View>
@@ -35,15 +35,16 @@ const Item = ({ navigation,typeOfRoute,title,idItem,idRoom,idMood}) => (
 
 );
 
-let selectRoute = ({navigation,typeOfRoute,idRoom,idItem})=>{
-    console.log("item"+ idItem + " route "+ typeOfRoute)
+let selectRoute = ({navigation,typeOfRoute,idRoom,idItem,title})=>{
+    //console.log("item"+ idItem + " route "+ typeOfRoute)
     if(typeOfRoute == 'Mood'){
         idRoom = idItem
     }
 
     navigation.navigate(typeOfRoute,{
         idRoom: idRoom,
-        idMood : idItem
+        idMood : idItem,
+        name: title
     })
     idRoom = idItem;
 
@@ -74,7 +75,7 @@ export const List = ({navigation,rooms,typeOfRoute,idRoom,idMood})=> {
         result.push([i, rooms [i]]);
 
     console.log("result")
-    console.log(result[0])
+    //console.log(result[0])
 
     return (
         <View style={{ flex: 1, paddingTop: 30, backgroundColor: "#dff2ff" }}>

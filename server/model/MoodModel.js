@@ -53,6 +53,16 @@ Mood.all = async ()=>{
     return roomData
 }
 
+Mood.update = async (idMoon,light_color,light_power,nameMood,playlist)=>{
 
+    const hopperRef = dbRefObject.child(idMoon);
+    await hopperRef.update({
+        'light_color': light_color,
+        'light_power': light_power,
+        'name': nameMood,
+        'playlist': playlist,
+
+    });
+}
 
 module.exports = Mood
