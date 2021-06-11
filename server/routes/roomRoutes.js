@@ -12,8 +12,10 @@ roomRouter.get('/addRoom',(req,res)=>{
 
 });
 
-roomRouter.get('/getAllRooms',(req,res)=>{
-    model.all()
+roomRouter.get('/getAllRooms',async (req,res)=>{
+   let allRooms = await model.all()
+    console.log(allRooms)
+    res.send(allRooms)
 });
 
 roomRouter.get('/getRoom',(req,res)=>{

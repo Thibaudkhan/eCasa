@@ -1,6 +1,6 @@
 const db = require('../db.js')// calling file with sql method
 const  firebase = require("firebase/app");
-
+const {firebaseConfig}= require("../conf")
 
 let Mood = {}
 

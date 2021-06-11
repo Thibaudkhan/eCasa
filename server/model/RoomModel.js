@@ -1,6 +1,7 @@
 const db = require('../db.js')// calling file with sql method
 
 const  firebase = require("firebase/app");
+const {firebaseConfig}= require("../conf")
 
 
 let Room = {}
@@ -35,15 +36,17 @@ Room.one = (id)=>{
     });
 }
 Room.all = async ()=>{
-    dbRefObject.get().then((snapshot) => {
+    let roomData = null
+   await dbRefObject.get().then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val());
+            roomData = snapshot.val()
         } else {
-            console.log("No data available");
+            roomData = "No data available";
         }
     }).catch((error) => {
         console.error(error);
     });
+    return roomData
 
 }
 
